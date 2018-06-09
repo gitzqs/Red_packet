@@ -1,0 +1,54 @@
+/**
+ * Copyright : http://www.sandpay.com.cn , 2011-2014
+ * Project : sandpay-cashier-webgateway
+ * $Id$
+ * $Revision$
+ * Last Changed by pxl at 2016-12-28 上午10:49:46
+ * $URL$
+ * 
+ * Change Log
+ * Author      Change Date    Comments
+ *-------------------------------------------------------------
+ * pxl         2016-12-28        Initailized
+ */
+package com.zqs.utils.listener;
+
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.zqs.utils.sandpay.base.CertUtil;
+import com.zqs.utils.sandpay.base.SDKConfig;
+
+/**
+ * @author pan.xl
+ *
+ */
+public class ContextLoadListener implements ServletContextListener {
+	
+	private static final Logger logger = LoggerFactory.getLogger(ContextLoadListener.class);
+
+	@Override
+	public void contextDestroyed(ServletContextEvent arg0) {
+
+	}
+
+	@Override
+	public void contextInitialized(ServletContextEvent arg0) {
+
+		logger.info("加载证书...");
+		// 加载证书
+		try {
+			//加载配置文件
+			SDKConfig.getConfig().loadPropertiesFromSrc();
+			//加载证书
+			CertUtil.init(SDKConfig.getConfig().getSandCertPath(), SDKConfig.getConfig().getSignCertPath(), SDKConfig.getConfig().getSignCertPwd());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+}

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zqs.dao.cms.IUserMapper">
+	<resultMap id="userMap" type="user">
+		<id column="ID" property="id" jdbcType="DECIMAL"/>
+		<result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR"/>
+		<result column="PASSWORD" property="password" jdbcType="VARCHAR"/>
+		<result column="MOBILE" property="mobile" jdbcType="VARCHAR"/>
+		<result column="EMAIL" property="email" jdbcType="VARCHAR"/>
+		
+		<result column="ERROR_NUM" property="errorNum" jdbcType="DECIMAL"/>
+		<result column="LAST_ERROR_TIME" property="lastErrorTime" jdbcType="TIMESTAMP"/>
+		<result column="FROZEN_TIME" property="frozenTime" jdbcType="TIMESTAMP"/>
+		<result column="LAST_LOGIN_TIME" property="lastLoginTime" jdbcType="TIMESTAMP"/>
+		<result column="STATUS" property="status" jdbcType="DECIMAL"/>
+		
+		<result column="CREATOR_ID" property="creatorId" jdbcType="DECIMAL"/>
+		<result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP"/>
+		<result column="LAST_OPERATOR_ID" property="lastOperatorId" jdbcType="DECIMAL"/>
+		<result column="LAST_OPERATED_TIME" property="lastOperatedTime" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	
+	<select id="loadUserByloginname" parameterType="String" resultMap="userMap">
+		SELECT ID, LOGIN_NAME, PASSWORD, MOBILE, EMAIL, ERROR_NUM, LAST_ERROR_TIME, 
+			FROZEN_TIME, LAST_LOGIN_TIME, STATUS
+		FROM CMS_USER
+		WHERE LOGIN_NAME = #{loginName}
+	</select>
+	
+	<!-- 更新用户 begin -->
+	<update id="update" parameterType="Map">
+		UPDATE CMS_USER
+			<set>
+					STATUS = #{status}
+					<if test="errorNum != null">
+						,ERROR_NUM = #{errorNum}
+					</if>
+					<if test="lastErrorTime != null and lastErrorTime != ''">
+						,LAST_ERROR_TIME = #{lastErrorTime}
+					</if>
+					<if test="lastLoginTime != null and lastLoginTime != ''">
+						,LAST_LOGIN_TIME = #{lastLoginTime}
+					</if>
+					<if test="frozenTime != null and frozenTime != ''">
+						,FROZEN_TIME = #{frozenTime}
+					</if>
+			</set>
+		WHERE ID = #{id}
+	</update>
+	<!-- 更新用户 end -->
+	
+	<!-- 新增用户 begin -->
+	<insert id="save" parameterType="user" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO CMS_USER(LOGIN_NAME, PASSWORD, STATUS, CREATOR_ID, CREATED_TIME)VALUES(
+			#{loginName}, #{password}, #{status}, #{creatorId}, #{createdTime}
+		)
+	</insert>
+	<!-- 新增用户 end -->
+</mapper>
