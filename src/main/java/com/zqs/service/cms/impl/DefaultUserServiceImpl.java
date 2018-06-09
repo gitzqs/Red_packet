@@ -1,9 +1,5 @@
 package com.zqs.service.cms.impl;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -18,11 +14,9 @@ import com.zqs.dao.cms.IUserMapper;
 import com.zqs.model.base.ReturnObject;
 import com.zqs.model.base.e.ReturnCode;
 import com.zqs.model.cms.User;
-import com.zqs.model.cms.e.EUserStatus;
 import com.zqs.request.cms.AuthLoginUser;
 import com.zqs.request.cms.AuthRegisterUser;
 import com.zqs.service.cms.IUserService;
-import com.zqs.utils.json.DateFormatUtils;
 import com.zqs.utils.json.JacksonUtils;
 @Service("userService")
 public class DefaultUserServiceImpl implements IUserService {
@@ -32,7 +26,7 @@ public class DefaultUserServiceImpl implements IUserService {
 	
 	@Override
 	public User loadUserByloginname(String loginName) {
-		return userMapper.loadUserByloginname(loginName);
+		return userMapper.loadUser(loginName);
 	}
 
 	@Override
@@ -45,87 +39,32 @@ public class DefaultUserServiceImpl implements IUserService {
 			//1、获取参数
 			String loginName = loginUser.getLoginName();	//登录名
 			String password = loginUser.getPassword();		//密码（未加密）
-			Date date = new Date();
 			
 			//2、验证参数是否为空
 			if(!StringUtils.isEmpty(loginName)
 					&& !StringUtils.isEmpty(password)) {
 				
 				//3、验证用户是否存在
-				User user = userMapper.loadUserByloginname(loginName);
+				User user = userMapper.loadUser(loginName);
 				if(user != null
 						&& user.getId() != 0) {
 					
-					//4、验证用户状态
-					Map<String,Object> requestMap = new HashMap<String,Object>();
-					if(user.getStatus() == EUserStatus.FROZEN
-							&& user.getFrozenTime().before(date)) {
-						requestMap.put("id", user.getId());
-						requestMap.put("status", EUserStatus.ACTIVE);
-						requestMap.put("errorNum", 0);
-						userMapper.update(requestMap);
-						user.setStatus(EUserStatus.ACTIVE);
-						user.setErrorNum(0);
-					}
-					if(user.getStatus() == EUserStatus.ACTIVE) {
 						//5、验证密码
-						if(DigestUtils.md5Hex(password).equals(user.getPassword())) {
+						if(DigestUtils.md5Hex(password).equals(user.getLoginPwd())) {
 							
-							//登录成功
-							requestMap.clear();
-							requestMap.put("id", user.getId());
-							requestMap.put("status", EUserStatus.ACTIVE);
-							requestMap.put("errorNum", 0);
-							requestMap.put("lastLoginTime", date);
-							userMapper.update(requestMap);
+							//更新最新登录时间
+							userMapper.updateTime(user.getId());
 								
 							//登录
 							Subject subject = SecurityUtils.getSubject();
-							UsernamePasswordToken token = new UsernamePasswordToken(user.getLoginName(),user.getPassword(),true,null);
+							UsernamePasswordToken token = new UsernamePasswordToken(user.getLoginName(),user.getLoginPwd(),true,null);
 							subject.login(token);
 							
 						}else {
-							requestMap.clear();
-							requestMap.put("id", user.getId());
-							if(user.getErrorNum() == 4) {
-								if(user.getLastErrorTime().before(DateFormatUtils.addOrSub(date, 4, -3))) {
-									requestMap.put("errorNum", 1);
-									requestMap.put("lastErrorTime", date);
-									requestMap.put("status", EUserStatus.ACTIVE);
-									returnCode = ReturnCode.USER_LOGIN_PWD_ERROR_CODE;
-									returnMsg = ReturnCode.USER_LOGIN_PWD_ERROR_MSG + ",再输入错误4次，帐号将冻结三小时！";
-								}else {
-									requestMap.put("errorNum", 5);
-									requestMap.put("lastErrorTime", date);
-									Date frozenTime = DateFormatUtils.addOrSub(date, 4, 3);
-									requestMap.put("frozenTime", frozenTime);
-									requestMap.put("status", EUserStatus.FROZEN);
-									returnCode = ReturnCode.USER_LOGIN_PWD_ERROR_CODE;
-									returnMsg = ReturnCode.USER_LOGIN_PWD_ERROR_MSG + ",帐号已冻结，将于"
-											+ DateFormatUtils.format(frozenTime, DateFormatUtils.ymd_hms)
-											+ "之后解冻！";
-								}
-							}else {
-								requestMap.put("errorNum", user.getErrorNum() + 1);
-								requestMap.put("status", EUserStatus.ACTIVE);
-								requestMap.put("lastErrorTime", date);
-								returnCode = ReturnCode.USER_LOGIN_PWD_ERROR_CODE;
-								returnMsg = ReturnCode.USER_LOGIN_PWD_ERROR_MSG + ",再输入错误" + 
-								 (4 - user.getErrorNum()) + "次，帐号将冻结三小时！";
-							}
-							userMapper.update(requestMap);
+							returnCode = ReturnCode.USER_LOGIN_PWD_ERROR_CODE;
+							returnMsg = ReturnCode.USER_LOGIN_PWD_ERROR_MSG;
 						}
-					}else {
-						if(user.getStatus() == EUserStatus.UN_ACTIVE) {
-							returnCode = ReturnCode.USER_UNACTIVE_CODE;
-							returnMsg = ReturnCode.USER_UNACTIVE_MSG;
-						}else {
-							returnCode = ReturnCode.USER_FROZEN_CODE;
-							returnMsg = ReturnCode.USER_FROZEN_MSG
-									+ "， 请于" + DateFormatUtils.format(user.getFrozenTime(), DateFormatUtils.ymd_hms)
-									+ "之后再登录！";
-						}
-					}
+					
 				}else {
 					returnCode = ReturnCode.USER_NOT_EXISTS_CODE;
 					returnMsg = ReturnCode.USER_NOT_EXISTS_MSG;
@@ -157,19 +96,23 @@ public class DefaultUserServiceImpl implements IUserService {
 				if(user != null) {
 					String loginName = registerUser.getLoginName();		//用户名
 					String loginPwd = registerUser.getLoginPwd();		//登录密码
+					String loginPwdAgain = registerUser.getLoginPwdAgain(); //二次密码
 					if(!StringUtils.isEmpty(loginPwd)
-							&& !StringUtils.isEmpty(loginName)) {
+							&& !StringUtils.isEmpty(loginName)
+							&& !StringUtils.isEmpty(loginPwdAgain)) {
 						//2、验证用户是否注册
-						User u = userMapper.loadUserByloginname(loginName);
+						User u = userMapper.loadUser(loginName);
 						if(u == null
 								|| u.getId() == 0) {
-							//3、新增用户
-							u = new User();
-							u.setLoginName(loginName);
-							u.setPassword(loginPwd);
-							u.setStatus(EUserStatus.ACTIVE);
-							userMapper.save(u);
-							
+							if(loginPwd.equals(loginPwdAgain)) {
+								u = new User();
+								u.setLoginName(loginName);
+								u.setLoginPwd(loginPwd);
+								userMapper.save(u);
+							}else {
+								returnCode = ReturnCode.REGISTER_PWD_DIF_CODE;
+								returnMsg = ReturnCode.REGISTER_PWD_DIF_MSG;
+							}
 						}else {
 							returnCode = ReturnCode.USER_EXISTS_CODE;
 							returnMsg = ReturnCode.USER_EXISTS_MSG;

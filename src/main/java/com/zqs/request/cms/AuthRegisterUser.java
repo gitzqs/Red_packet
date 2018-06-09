@@ -16,6 +16,9 @@ public class AuthRegisterUser implements Serializable{
 	
 	/** 密码 */
 	private String loginPwd;
+	
+	/** 密码again */
+	private String loginPwdAgain;
 
 	public String getLoginName() {
 		return loginName;
@@ -31,6 +34,14 @@ public class AuthRegisterUser implements Serializable{
 
 	public void setLoginPwd(String loginPwd) {
 		this.loginPwd = loginPwd;
+	}
+
+	public String getLoginPwdAgain() {
+		return loginPwdAgain;
+	}
+
+	public void setLoginPwdAgain(String loginPwdAgain) {
+		this.loginPwdAgain = loginPwdAgain;
 	}
 	
 	

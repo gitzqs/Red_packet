@@ -4,21 +4,17 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.DisabledAccountException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
-import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zqs.model.cms.User;
-import com.zqs.model.cms.e.EUserStatus;
 import com.zqs.service.cms.IUserService;
 /**
  * shiro权限、登录认证
@@ -62,15 +58,11 @@ public class ShiroDbRealm extends AuthorizingRealm{
 		
 		User user = userService.loadUserByloginname(token.getUsername());
 		if(null != user){
-			if((new String(token.getPassword())).equals(user.getPassword())){
-					if(user.getStatus() == EUserStatus.UN_ACTIVE
-							|| user.getStatus() == EUserStatus.FROZEN){
-						throw new DisabledAccountException("user is disabled");
-				}
+			if((new String(token.getPassword())).equals(user.getLoginPwd())){
 				SecurityUtils.getSubject().getSession().setAttribute("user", user);
 				SecurityUtils.getSubject().getSession().setTimeout(1000 * 60 * 60 * 24);//会话时间设置：24h
 				
-				SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getPassword(), getName());
+				SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getLastLoginTime(), getName());
 				return info;
 			}else{
 					logger.info("user [{}] authenticated fail with wrong password.", token.getUsername());

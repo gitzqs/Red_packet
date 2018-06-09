@@ -16,7 +16,7 @@
     <!-- 应用范围内初始化参数 -->
     <context-param>
         <param-name>webAppRootKey</param-name>
-        <param-value>eshopyun.root</param-value>
+        <param-value>red_packet.root</param-value>
     </context-param>
     
     <context-param>
@@ -87,18 +87,6 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 	
-   	<filter>
-		<filter-name>setCharacterEncoding</filter-name>
-		<filter-class>com.zqs.utils.Filter.EncodingFilter</filter-class>
-		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>utf-8</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>setCharacterEncoding</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
     <!-- 编码过滤器 -->
     <filter>
     	<!-- 过滤器名称 -->
@@ -136,10 +124,6 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping> 
-    
-    <listener>
-		<listener-class>com.zqs.utils.listener.ContextLoadListener</listener-class>
-	</listener>
 	
     <listener>
         <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
@@ -153,17 +137,6 @@
 	<listener> 
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class> 
 	</listener> 
-	
-	<!-- sandpay提交页面 -->
-	<servlet>
-		<servlet-name>orderCreate</servlet-name>
-		<servlet-class>com.zqs.servlet.sandpay.OrderCreateServlet</servlet-class>
-	</servlet>
-	
-	<servlet-mapping>
-		<servlet-name>orderCreate</servlet-name>
-		<url-pattern>/orderCreate</url-pattern>
-	</servlet-mapping>
 	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

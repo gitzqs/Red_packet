@@ -53,5 +53,9 @@ public interface ReturnCode {
 	/** 用户名已存在 */
 	String USER_EXISTS_CODE = "2006";
 	String USER_EXISTS_MSG = "用户名已存在！";
+	
+	/** 两次输入密码不一样  */
+	String REGISTER_PWD_DIF_CODE = "2007";
+	String REGISTER_PWD_DIF_MSG = "两次输入密码不一样";
 
 }

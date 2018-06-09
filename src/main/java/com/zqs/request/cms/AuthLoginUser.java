@@ -17,9 +17,6 @@ public class AuthLoginUser implements Serializable{
 	/** 登录密码 */
 	private String password;
 	
-	/** 验证码 */
-	private String verifyCode;
-
 	public String getLoginName() {
 		return loginName;
 	}
@@ -35,14 +32,4 @@ public class AuthLoginUser implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public String getVerifyCode() {
-		return verifyCode;
-	}
-
-	public void setVerifyCode(String verifyCode) {
-		this.verifyCode = verifyCode;
-	}
-	
-	
 }

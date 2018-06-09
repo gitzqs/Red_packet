@@ -2,15 +2,14 @@ package com.zqs.model.cms;
 
 import java.util.Date;
 
-import com.zqs.model.base.REntitytime;
-import com.zqs.model.cms.e.EUserStatus;
+import com.zqs.model.base.REntity;
 /**
  * 用户基本信息
  * 
  * @author qiushi.zhou  
  * @date 2018年6月2日 下午1:53:00
  */
-public class User extends REntitytime{
+public class User extends REntity{
 
 	private static final long serialVersionUID = -3783685544470301289L;
 
@@ -18,28 +17,13 @@ public class User extends REntitytime{
 	private String loginName;
 	
 	/** 登录密码 */
-	private String password;
+	private String loginPwd;
 	
-	/** 手机号 */
-	private String mobile;
-	
-	/** 邮箱 */
-	private String email;
-	
-	/** 错误次数 */
-	private int errorNum;
-	
-	/** 上次错误时间 */
-	private Date lastErrorTime;
+	/** 创建时间 */
+	private Date createdTime;
 	
 	/** 最近登录时间 */
 	private Date lastLoginTime;
-	
-	/** 冻结到期时间 */
-	private Date frozenTime;
-	
-	/** 状态 {@link EUserStatus.java}*/
-	private int status;
 
 	public String getLoginName() {
 		return loginName;
@@ -49,36 +33,20 @@ public class User extends REntitytime{
 		this.loginName = loginName;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getLoginPwd() {
+		return loginPwd;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setLoginPwd(String loginPwd) {
+		this.loginPwd = loginPwd;
 	}
 
-	public String getMobile() {
-		return mobile;
+	public Date getCreatedTime() {
+		return createdTime;
 	}
 
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public int getErrorNum() {
-		return errorNum;
-	}
-
-	public void setErrorNum(int errorNum) {
-		this.errorNum = errorNum;
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
 	}
 
 	public Date getLastLoginTime() {
@@ -88,30 +56,11 @@ public class User extends REntitytime{
 	public void setLastLoginTime(Date lastLoginTime) {
 		this.lastLoginTime = lastLoginTime;
 	}
+	
+	
+	
 
-	public Date getFrozenTime() {
-		return frozenTime;
-	}
-
-	public void setFrozenTime(Date frozenTime) {
-		this.frozenTime = frozenTime;
-	}
-
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
-	}
-
-	public Date getLastErrorTime() {
-		return lastErrorTime;
-	}
-
-	public void setLastErrorTime(Date lastErrorTime) {
-		this.lastErrorTime = lastErrorTime;
-	}
+	
 	
 	
 }

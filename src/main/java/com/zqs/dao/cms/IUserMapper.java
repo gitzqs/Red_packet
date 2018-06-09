@@ -1,29 +1,25 @@
 package com.zqs.dao.cms;
 
-import java.util.Map;
-
 import com.zqs.model.cms.User;
 
 public interface IUserMapper {
 	
 	/**
-	 * 根据用户名获取用户信息
+	 * 根据登录名获取用户
 	 * 
-	 * @param loginName
-	 * 		用户名
 	 * @return User
 	 */
-	User loadUserByloginname(String loginName);
+	User loadUser(String loginName);
 	
 	/**
-	 * 用户基本信息更新
+	 * 更新登录时间
 	 * 
 	 * @return void
 	 */
-	void update(Map<String,Object> map);
+	void updateTime(int id);
 	
 	/**
-	 * 新增用户
+	 * 新增
 	 * 
 	 * @return void
 	 */
