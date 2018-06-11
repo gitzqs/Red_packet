@@ -46,5 +46,10 @@ public class ToolUtils {
         System.out.println("elemeKey = "+elemeKey);
 		return list;
 	}
+	
+	public static String randomOrderNo(String orderHead){
+    	long t = System.currentTimeMillis();
+    	return orderHead + t;
+    }
 
 }

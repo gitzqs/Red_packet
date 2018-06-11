@@ -34,4 +34,6 @@ public interface IUserService {
 	 */
 	@Transactional
 	String register(AuthRegisterUser registerUser);
+	
+	int loadScore();
 }

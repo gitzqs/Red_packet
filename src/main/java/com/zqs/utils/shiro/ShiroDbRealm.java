@@ -62,7 +62,7 @@ public class ShiroDbRealm extends AuthorizingRealm{
 				SecurityUtils.getSubject().getSession().setAttribute("user", user);
 				SecurityUtils.getSubject().getSession().setTimeout(1000 * 60 * 60 * 24);//会话时间设置：24h
 				
-				SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getLastLoginTime(), getName());
+				SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getLoginPwd(), getName());
 				return info;
 			}else{
 					logger.info("user [{}] authenticated fail with wrong password.", token.getUsername());

@@ -6,7 +6,3 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 
 <script src="${ctx}/js/common/jquery-1.9.1.js" type="text/javascript"></script>
-<link href="${ctx}/css/head.css" rel="stylesheet" type="text/css">
-
-<link href="${ctx}/css/common/common.css" rel="stylesheet" type="text/css">
-

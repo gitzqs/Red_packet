@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zqs.dao.order.IOrderMapper">
+
+	<insert id="save" parameterType="Map">
+		INSERT INTO TB_USER_ORDER(USER_ID, TRADE_NO, ORDER_AMOUNT, ORDER_TIME, STATUS)VALUES(
+			#{userId}, #{out_trade_no}, #{total_amount}, NOW(), 0
+		)
+	</insert>
+	
+	<!-- 更新订单 -->
+	<update id="update" parameterType="String">
+		UPDATE TB_USER_ORDER
+			SET PAY_AMOUNT = ORDER_AMOUNT,
+				PAY_TIME = NOW(),
+				STATUS = 1
+		WHERE TRADE_NO = #{tradeNo}
+	</update>
+	
+	<select id="loadLimit10" parameterType="int" resultType="Map">
+		SELECT TRADE_NO, PAY_AMOUNT, PAY_TIME
+		FROM TB_USER_ORDER
+		WHERE USER_ID = #{userId}
+			AND STATUS = 1
+		ORDER BY ID DESC
+		LIMIT 1
+	</select>
+	
+	<select id="loadUserid" parameterType="String" resultType="int">
+		SELECT IFNULL(USER_ID,0)
+		FROM TB_USER_ORDER
+		WHERE TRADE_NO = #{tradeNo}
+	</select>
+	
+	<select id="loadAmount" parameterType="String" resultType="String">
+		select ORDER_AMOUNT
+		from TB_USER_ORDER
+		where TRADE_NO = #{tradeNo}
+	</select>
+</mapper>

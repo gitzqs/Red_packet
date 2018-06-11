@@ -46,13 +46,22 @@ public class UserController {
 	}
 	
 	/**
-	 * 注册
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value="register/",method=RequestMethod.GET)
+	public String register() {
+		
+		return "login/register";
+	}
+	/**
+	 * 注册处理
 	 * 
 	 * @return String
 	 */
-	@RequestMapping(value="register/",method=RequestMethod.POST)
+	@RequestMapping(value="register/handle",method=RequestMethod.POST)
 	@ResponseBody
-	public String register(AuthRegisterUser registerUser) {
+	public String register(@RequestBody AuthRegisterUser registerUser) {
 		
 		return userService.register(registerUser);
 	}

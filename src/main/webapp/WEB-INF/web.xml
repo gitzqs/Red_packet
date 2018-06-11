@@ -136,7 +136,31 @@
 	<!-- 配置log4j.xml监听器 --> 
 	<listener> 
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class> 
-	</listener> 
+	</listener>
+	
+	<!-- 支付宝支付 begin -->
+	<servlet>
+		<servlet-name>alipay</servlet-name>
+		<servlet-class>com.zqs.servlet.AlipayPcServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>alipay</servlet-name>
+		<url-pattern>/alipay</url-pattern>
+	</servlet-mapping>
+	<!-- 支付宝支付 end -->
+	
+	<servlet>
+		<servlet-name>alipayNotify</servlet-name>
+		<servlet-class>com.zqs.servlet.AlipayNotifyServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>alipayNotify</servlet-name>
+		<url-pattern>/alipayNotify</url-pattern>
+	</servlet-mapping>
+	
+ 
 	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

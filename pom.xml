@@ -7,7 +7,7 @@
   
   <properties>
 	    <!-- spring版本号 -->
-		<spring.version>3.2.4.RELEASE</spring.version>
+		<spring.version>4.0.0.RELEASE</spring.version>
 		<!-- log4j日志文件管理包版本 -->
 		<slf4j.version>1.6.6</slf4j.version>
 		<log4j.version>1.2.9</log4j.version>
@@ -291,6 +291,34 @@
 		    <version>1.2.47</version>
 		</dependency>
 		
+		<dependency>
+	      <groupId>com.alipay</groupId>
+	      <artifactId>sdk-java20170324180803</artifactId>
+	      <version>1.0.0</version>
+	      <scope>system</scope>
+	      <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/alipay-sdk-java20170324180803.jar</systemPath>
+    	</dependency>
+    	
+    	<dependency>
+	      <groupId>com.alipay</groupId>
+	      <artifactId>sdk-java20170324180803-source</artifactId>
+	      <version>1.0.0</version>
+	      <scope>system</scope>
+	      <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/alipay-sdk-java20170324180803-source.jar</systemPath>
+    	</dependency>
+    	
+    	<dependency>  
+          <groupId>com.google.zxing</groupId>  
+          <artifactId>core</artifactId>  
+          <version>2.1</version>  
+      </dependency> 
+      
+      <dependency>  
+          <groupId>com.google.zxing</groupId>  
+          <artifactId>javase</artifactId>  
+          <version>2.1</version>  
+      </dependency> 
+		
 		
   </dependencies>
   
@@ -300,8 +328,8 @@
 				<plugin>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<configuration>
-						<source>1.7</source>
-						<target>1.7</target>
+						<source>1.8</source>
+						<target>1.8</target>
 						<encoding>UTF-8</encoding>
 					</configuration>
 				</plugin>

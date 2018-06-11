@@ -1,5 +1,7 @@
 package com.zqs.dao.cms;
 
+import java.util.Map;
+
 import com.zqs.model.cms.User;
 
 public interface IUserMapper {
@@ -24,4 +26,13 @@ public interface IUserMapper {
 	 * @return void
 	 */
 	void save(User user);
+	
+	/**
+	 * 获取积分
+	 * @param userId
+	 * @return
+	 */
+	int loadScore(int userId);
+	
+	void updateScore(Map<String,Object> map);
 }

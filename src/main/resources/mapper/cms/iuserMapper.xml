@@ -20,7 +20,7 @@
 	<!-- 更新登录时间 begin -->
 	<update id="updateTime" parameterType="int">
 		UPDATE TB_USER
-			LAST_LOGIN_TIME = NOW()
+			SET LAST_LOGIN_TIME = NOW()
 		WHERE ID = #{id}
 	</update>
 	<!-- 更新登录时间 end -->
@@ -32,4 +32,18 @@
 		)
 	</insert>
 	<!-- 新增 end -->
+	
+	<!-- 获取积分 begin -->
+	<select id="loadScore" parameterType="int" resultType="int">
+		SELECT IFNULL(SCORE,0)
+		FROM TB_USER
+		WHERE ID = #{userId}
+	</select>
+	<!-- 获取积分 end -->
+	
+	<update id="updateScore" parameterType="Map">
+		UPDATE TB_USER
+			SET SCORE = SCORE + #{score}
+		WHERE ID = #{userId}
+	</update>
 </mapper>

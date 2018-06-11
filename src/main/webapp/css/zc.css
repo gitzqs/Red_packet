@@ -1,0 +1,169 @@
+@charset "utf-8";
+/* CSS Document */
+html { box-sizing: border-box; min-height: 100%;margin:0; padding:0; }
+body{
+	margin:0;
+	padding:0;
+	overflow: hidden;
+}
+.clearfix{clear:both;}
+
+.bk_all{
+	width:100%;
+	overflow: hidden;
+	position:relative;
+}
+.bk{
+	display:block;
+	width:100%;
+}
+.wmy{
+	width:26%;
+	position:absolute;
+	top:20%;
+	left:15%;
+}
+
+.bk_all .dl_bk{
+	width:30%;
+	background-color:#f1f1f1;
+	position: absolute;
+	z-index: 1;
+	top:10%;
+	left:55%;
+	padding-bottom:30px;
+/*	height:35%;*/
+
+}
+.bk_all .dl_bk .logo{
+	display:block;
+	width:40%;
+	margin-left:30%;
+	margin-top:30px;
+}
+.bk_all .dl_bk h1{
+	margin:0;
+	padding:0;
+	font-size:20px;
+	font-family: "微软雅黑";
+	color:#ef3433;
+	line-height:70px;
+	text-align:center;
+}
+.bk_all .zh h2{
+	margin:0;
+	padding:0;
+	font-size:16px;
+	font-family: "微软雅黑";
+	line-height:50px;
+	margin-left:5%;
+	font-weight: normal;
+}
+.zh input{
+	margin:0;
+	padding:0;
+	background-color:white;
+	height:40px;
+	width:85%;
+	border:0;
+	margin-left:5%;
+	color:#aaabab;
+	padding-left:5%;
+	font-size:16px;
+	font-family: "微软雅黑";
+	line-height:40px;
+}
+.bk_all .mm h2{
+	margin:0;
+	padding:0;
+	font-size:16px;
+	font-family: "微软雅黑";
+	line-height:50px;
+	margin-left:5%;
+	font-weight: normal;
+}
+.mm input{
+	margin:0;
+	padding:0;
+	background-color:white;
+	height:40px;
+	width:85%;
+	border:0;
+	margin-left:5%;
+	color:#aaabab;
+	padding-left:5%;
+	font-size:16px;
+	font-family: "微软雅黑";
+	line-height:40px;
+}
+.bk_all .qrmm h2{
+	margin:0;
+	padding:0;
+	font-size:16px;
+	font-family: "微软雅黑";
+	line-height:50px;
+	margin-left:5%;
+	font-weight: normal;
+}
+.qrmm input{
+	margin:0;
+	padding:0;
+	background-color:white;
+	height:40px;
+	width:85%;
+	border:0;
+	margin-left:5%;
+	color:#aaabab;
+	padding-left:5%;
+	font-size:16px;
+	font-family: "微软雅黑";
+	line-height:40px;
+}
+
+
+.bk_all .zczh{
+	width:90%;
+	height:40px;
+	line-height:40px;
+	font-size:16px;
+	font-family: "微软雅黑";
+	color:white;
+	background-color:#189ffe;
+	border:0;
+	text-align: center;
+	margin-top:20px;
+	
+	margin-left:5%;
+}
+.bk_all h3{
+	margin:0;
+	padding:0;
+	text-align: center;
+	font-size:16px;
+	font-family: "微软雅黑";
+	font-weight: normal;
+	line-height:40px;
+	margin-top:20px;
+	background-color:#ff9102;
+	width:90%;
+	height:40px;
+	margin:0 auto;
+	margin-top:20px;
+}
+.bk_all h3 a{
+	text-decoration: none;
+	color:white;
+}
+.bk_all .fz{
+	width:50%;
+	margin-left:25%;
+	height:40px;
+	line-height:40px;
+	font-size:16px;
+	font-family: "微软雅黑";
+	color:white;
+	background-color:#189ffe;
+	border:0;
+	text-align: center;
+	
+}
