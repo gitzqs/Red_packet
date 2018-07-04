@@ -35,7 +35,7 @@
 </div>
 <div class="one">
 	<div class="kh">充值金额</div>
-	<input type="text" placeholder="充值1元可以兑换10积分" id="amount">
+	<input type="text" placeholder="充值1元可以兑换10积分" id="amount" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
 	<div class="clearfix"></div>
 </div>
 

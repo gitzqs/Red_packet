@@ -44,13 +44,13 @@
 
 <div class="gz">
 	<h1>公告</h1>
-	<div class="qq">
+	<!-- <div class="qq">
 		饿了么QQ交流群：<a href="https://jq.qq.com/?_wv=1027&amp;k=5tB3ZCc">xxxxx(点我进群)</a>
 	</div>
 	<div class="tb">
 		淘宝优惠券群：<a href="https://jq.qq.com/?_wv=1027&amp;k=5EAeSkl">xxxxx(点我进群)</a>
 	</div>
-	<div class="clearfix"></div>
+	<div class="clearfix"></div> -->
 	<div class="line2"></div>
 	<p>4积分领取一次，100%到账4.6-10元红包，如果不填写手机号直接将领取到最大红包的前一个。（点击领取红包，会有3s左右反应时间！）</p>
 	
