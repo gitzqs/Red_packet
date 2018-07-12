@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <title>饿了么大红包助手</title>
-<link href="${ctx}/css/khcz.css" rel="stylesheet" type="text/css">
+<link href="${ctx}/css/khcz.css?1" rel="stylesheet" type="text/css">
 <script src="${ctx}/js/rec/rec.js" type="text/javascript"></script>
 </head>
 
@@ -55,6 +55,16 @@
 	<p>4积分领取一次，100%到账4.6-10元红包，如果不填写手机号直接将领取到最大红包的前一个。（点击领取红包，会有3s左右反应时间！）</p>
 	
 </div>
+<ul class="lhb">
+	<c:forEach items="${link}" var="l" varStatus="status">
+		<li><a href="${l.LINK}" target="view_window">${l.TITLE }</a></li>
+		
+		<c:if test="${status.index % 5 == 4 }">
+			<div class="clearfix"></div>
+		</c:if>
+	</c:forEach>
+	<div class="clearfix"></div>
+</ul>
 <div class="one">
 	<div class="sj">phone</div>
 	<input type="text" placeholder="输入需要领红包的手机号" id="mobile">

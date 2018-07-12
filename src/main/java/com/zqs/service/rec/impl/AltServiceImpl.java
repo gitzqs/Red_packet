@@ -39,6 +39,13 @@ public class AltServiceImpl implements AltService{
 		altDao.addUseNum(id);
 	}
 	
+	//账号使用次数==5
+	@Override
+	public void addUseNumberMax(Integer id) {
+		altDao.addUseNumMax(id);
+	}
+	
+	
 	//查找最大id
 	@Override
 	public Integer findMaxId() {
@@ -60,11 +67,13 @@ public class AltServiceImpl implements AltService{
 	//根据id查询实体获得UseNum
 	@Override
 	public Integer getUseNum(Integer id) {
-		Alt alt = altDao.findById(id);
-		if(alt != null) {
-			return alt.getUseNum();
-		}
-		return 0;
+		return altDao.findById(id).getUseNum();
+	}
+	
+	//根据id查询实体获得UseNum
+	@Override
+	public String getPhoneNum(Integer id) {
+		return altDao.findById(id).getPhoneNum();
 	}
 	
 	//将URL格式的Cookie转换为Avatar和ElemeKey
@@ -110,6 +119,9 @@ public class AltServiceImpl implements AltService{
 	//向数据库提交Cookie
 	@Override
 	public String insertCookie(List<String> cookie) throws IOException {
+		if(true){
+			return "暂时停止贡献Cookie";
+		}
 		if(cookie == null){		//如果Cookie为空，返回失败信息
 			return "错误";
 		}
@@ -120,9 +132,7 @@ public class AltServiceImpl implements AltService{
 			return "非法的Cookie";
 		}
 		if(altDao.checkCookieRepeat(cookie.get(1))<1){		//判断数据库中是否有重复Cookie，如果有则返回此Cookie已存在信息，否则则为成功
-			String str = "133"+(int)((Math.random()*90000000+9999999));
-			altDao.insertCookie(cookie.get(0),cookie.get(1),str);
-			altDao.insertCookie2(cookie.get(0),cookie.get(1),str);
+			altDao.insertCookie(cookie.get(0),cookie.get(1),"133"+(int)((Math.random()*90000000+9999999)));
 			return "成功啦!\n谢谢你(´-｀ )";
 		}else{
 			return "此Cookie已存在";

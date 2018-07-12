@@ -56,5 +56,8 @@
 	<select id="traversalId" resultType="Integer">
 		select ifnull((select id from hb_alt where id > #{id} order by id asc limit 1),0)
 	</select>
+		<update id="addUseNumMax">
+		update hb_alt set useNum = 99999 where id=#{id}
+	</update>
 
 </mapper>

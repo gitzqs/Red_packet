@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import com.zqs.request.rec.Link;
+
 public interface HongbaoService {
 	
 	/**
@@ -11,28 +13,28 @@ public interface HongbaoService {
 	 * 
 	 * @return
 	 */
-	public Object[] hongbao(String url, String avatar, String elemeKey, Integer id, String phoneNum) throws IOException;
+	public Object[] hongbao(String url, String avatar, String elemeKey, Integer id, String phoneNum) throws Exception;
 	
 	/**
 	 * 领大红包方法
 	 * 
 	 * @return
 	 */
-	public String getHongbao(String phoneNum, String url) throws IOException;
+	public String getHongbao(String phoneNum, String url) throws Exception;
 	
 	/**
 	 * 重置所有手机号
 	 * @param i
 	 * @throws IOException
 	 */
-	public void retrunPhone() throws IOException;
+	public void retrunPhone() throws Exception;
 	
 	/**
 	 * 修改手机号
 	 * 
 	 * @return
 	 */
-	public void changePhoneNum(Integer id,String phoneNum) throws IOException;
+	public void changePhoneNum(Integer id,String phoneNum) throws Exception;
 	
 	/**
 	 * 生成随机手机号
@@ -53,6 +55,18 @@ public interface HongbaoService {
 	 * @return
 	 */
 	public String getAdvertising();
+
+	public String getNextCookie();
+
+	void randomViolence(String url) throws Exception;
+	
+	void randomViolenceRemain(String url) throws Exception;
 	
 	List<Map<String,Object>> record();
+	
+	List<Map<String,Object>> loadLink();
+	
+	String del(int id);
+	
+	String add(Link link);
 }

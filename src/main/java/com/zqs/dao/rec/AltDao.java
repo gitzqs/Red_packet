@@ -60,4 +60,9 @@ public interface AltDao {
 	 * @return
 	 */
 	public Integer traversalId(@Param("id")Integer id);
+	
+	/*
+	 * 使用次数==5
+	 */
+	public void addUseNumMax(@Param("id") Integer id);
 }

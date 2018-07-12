@@ -1,7 +1,5 @@
 package com.zqs.web.rec;
 
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +22,7 @@ public class RecController {
 	@RequestMapping(value="/",method=RequestMethod.GET)
 	public String index(Model model) {
 		model.addAttribute("record", hongbaoService.record());
+		model.addAttribute("link", hongbaoService.loadLink());
 		return "rec/rec";
 	}
 	
@@ -38,7 +37,7 @@ public class RecController {
 		
 		try {
 			return hongbaoService.getHongbao(rr.getMobile(), rr.getUrl());
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;

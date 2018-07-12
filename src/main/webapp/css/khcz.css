@@ -388,8 +388,33 @@ body{
    left:0;
   
 }
-
 .eleme_nav li .special{
 	background-color:white;
+	color:#00aaee;
+}
+.lhb{
+	margin:0;
+	padding:0;
+	width:960px;
+	margin:0 auto;
+	background-color:white;
+	margin-top:20px;
+	border-radius:10px;
+	padding-top:20px;
+	padding-bottom:20px;
+}
+.lhb li{
+	margin:0;
+	padding:0;
+	float:left;
+	list-style: none;
+	width:192px;
+	text-align: center;
+	line-height:24px;
+}
+.lhb li a{
+	font-size:14px;
+	font-family: "微软雅黑";
+	text-decoration: none;
 	color:#00aaee;
 }

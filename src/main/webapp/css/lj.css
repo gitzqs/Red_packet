@@ -1,0 +1,276 @@
+@charset "utf-8";
+/* CSS Document */
+html {
+	margin:0; 
+	padding:0; 
+	width:100%;
+	height:100%;
+}
+body{
+	margin:0;
+	padding:0;
+	background-color:#f1f1f1;
+	position:relative;
+	height:100%;
+}
+.clearfix{clear:both;}
+/*顶部*/
+.top_bk{
+	width:100%;
+/*	background-color:white;	*/
+}
+.top{
+	width:974px;
+	margin:0 auto;
+	
+}
+.top img{
+	width:15%;
+	display:block;
+	float:left;
+}
+
+.top div{
+	padding-left:7px;
+	padding-right:7px;
+}
+.top .gl{
+	float:right;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	line-height: 48px;
+}
+.top .tuichu{
+	float:right;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	line-height: 48px;
+}
+.top .huanying{
+	float:right;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	line-height: 48px;
+}
+.top div a{
+	font-family: "微软雅黑";
+	font-size: 14px;
+	text-decoration: none;
+	line-height: 36px;
+	color:black;
+}
+.top div a:hover{
+	color: #00aaee;
+}
+.eleme_nav{
+	width:100%;
+	background-color:white;
+}
+.eleme_nav ul{
+	margin:0;
+	padding:0;
+	width:960px;
+	margin:0 auto;
+}
+.eleme_nav li{
+	margin:0;
+	padding:0;
+	list-style: none;
+	float:left;
+	width:33.33333%;
+	text-align:center;
+	line-height:50px;
+	font-size:16px;
+	font-family: "微软雅黑";
+}
+.eleme_nav li a{
+	text-decoration: none;
+	color:#000;
+}
+.eleme_nav li a:hover{
+	color:#00aaee;
+}
+
+
+.bj{
+	width:100%;
+	height:100%;
+	position: absolute;
+	z-index:1;
+	background-color:rgba(90,90,90,1.00);
+	filter: alpha(opacity=50);
+   opacity: 0.5;
+   top:0px;
+   left:0; 
+}
+
+.lb{
+	width:960px;
+	background-color:white;
+	margin:0 auto;
+	padding-top:30px;
+	padding-bottom:20px;
+}
+.lb_bt{
+	width:864px;
+	margin:0 auto;
+	margin:0;
+	padding:0;
+	border:1px solid #bbb;
+	margin-left:48px;
+}
+.lb_bt li{
+	margin:0;
+	padding:0;
+	float:left;
+	list-style: none;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	line-height:32px;
+}
+.lb .bt_one{
+	width:191px;
+	text-align: center;
+	border-right:1px solid #bbb;
+}
+.lb .bt_two{
+	width:575px;
+	text-align: center;
+	border-right:1px solid #bbb;
+}
+.lb .bt_three{
+	width:95px;
+	text-align: center;
+}
+.lb_nr{
+	width:864px;
+	margin:0 auto;
+	margin:0;
+	padding:0;
+	border:1px solid #bbb;
+	border-top:none;
+	margin-left:48px;
+}
+.lb_nr li{
+	margin:0;
+	padding:0;
+	float:left;
+	list-style: none;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	line-height:32px;
+}
+.lb .nr_one{
+	width:191px;
+	text-align: center;
+	border-right:1px solid #bbb;
+}
+.lb .nr_two{
+	width:575px;
+	text-align: center;
+	border-right:1px solid #bbb;
+	overflow: hidden;
+}
+.lb .nr_three{
+	width:95px;
+	text-align: center;
+}
+
+.lb .nr_three img{
+	display:block;
+	width:20px;
+	margin:0 auto;
+	margin-top:5px;
+}
+.xz{
+	width:10%;
+	font-size:16px; 
+	font-family: "微软雅黑";
+	line-height:30px;
+	height:30px;
+	color:white;
+	border:none;
+	float:right; 
+	background-color:#ef3433;
+	text-align: center;
+	margin-right:5%;
+}
+.bu_all{
+	width:960px;
+	margin:0 auto;
+	background-color:white;
+	margin-top:20px;	
+	padding-bottom:20px;
+}
+.list{
+	background-color:white;
+	width:480px;
+	padding-top:20px;
+	padding-bottom:20px;
+	position: absolute;
+	z-index: 2;
+	left:50%;
+	top:300px;
+	margin-left:-240px;
+}
+.list .sr_bt{
+	float:left;
+	width:15%;
+	text-align: center;
+	font-size:16px; 
+	font-family: "微软雅黑";
+	line-height:30px;
+}
+.list input{
+	float:left;
+	width:80%;
+	font-size:14px; 
+	font-family: "微软雅黑";
+	line-height:30px;
+}
+.list .sr_lj{
+	float:left;
+	width:15%;
+	text-align: center;
+	font-size:16px; 
+	font-family: "微软雅黑";
+	margin-top:20px;
+	line-height:30px;
+}
+.list textarea{
+	float:left;
+	width:78%;
+	font-size:14px;
+	font-family: "微软雅黑";
+	line-height:24px;
+	background-color:#f1f1f2;
+	border-radius:5px;
+	border:1px solid #ddd;
+	height:120px;
+	margin-top:20px;
+	padding-left:2%
+	
+}
+.list .close1{
+	position: absolute;
+	z-index:3;
+	width:36px;
+	right:-15px;
+	top:-28px;
+}
+.list .close1 img{
+	display: block;
+	width:100%;
+}
+.bj{
+	width:100%;
+	height:100%;
+	position: absolute;
+	z-index:1;
+	background-color:rgba(90,90,90,1.00);
+	filter: alpha(opacity=50);
+   opacity: 0.5;
+   top:0px;
+   left:0px;
+  
+}
